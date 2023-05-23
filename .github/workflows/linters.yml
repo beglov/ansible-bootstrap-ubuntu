@@ -9,26 +9,25 @@ jobs:
     name: YAML Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.
+      - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
-      - name: Install test dependencies.
+      - name: Install yamllint
         run: pip3 install yamllint
 
-      - name: Lint code.
-        run: |
-          yamllint .
+      - name: Lint YAML files
+        run: yamllint .
 
 #  ansible-lint:
 #    name: Ansible Lint
 #    runs-on: ubuntu-latest
 #    steps:
-#      - name: Fetch code
+#      - name: Checkout code
 #        uses: actions/checkout@v3
 #        with:
 #          fetch-depth: 0

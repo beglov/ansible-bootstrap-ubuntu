@@ -29,7 +29,7 @@ git clone https://github.com/beglov/ansible-bootstrap-ubuntu.git
 cd ansible-bootstrap-ubuntu
 ```
 
-### 2. Add your remote server’s IP to inventory file
+### 2. Add your remote servers to inventory file
 
 ```bash
 cp hosts.sample hosts
