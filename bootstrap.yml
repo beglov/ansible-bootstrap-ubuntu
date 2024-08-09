@@ -34,12 +34,12 @@
         state: present
         key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 
-    - name: Disable password authentication for root
+    - name: Disable password authentication
       lineinfile:
         path: /etc/ssh/sshd_config
-        state: present
-        regexp: '^#?PermitRootLogin'
-        line: 'PermitRootLogin prohibit-password'
+        regexp: '^#?PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+      notify: Restart SSH
 
     - name: Update apt and install required system packages
       apt:
@@ -57,3 +57,9 @@
       community.general.ufw:
         state: enabled
         default: deny
+
+  handlers:
+    - name: Restart SSH
+      systemd:
+        name: ssh
+        state: restarted
